@@ -1,0 +1,10 @@
+.incitingText {
+  color: #1900d5;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: all 0.3s linear;
+
+  &:hover {
+    text-shadow: 5px 5px 10px #ccc;
+  }
+}
