@@ -48,7 +48,8 @@ const AuthRootComponent: FC = (): JSX.Element => {
           navigate('/');
         } catch (error) {
           if (error instanceof Error) {
-            return error.message;
+            console.log(error);
+            return error;
           }
         }
       } else {
