@@ -7,69 +7,42 @@ export const useStyles = makeStyles((theme: Theme) => {
 
   return {
     root: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      padding: '32px 24px',
-      backgroundColor: colors.primary.DEFAULT,
-      maxHeight: '95px',
+      position: 'static',
+      background: `${colors.primary.DEFAULT} !important`,
       borderBottom: `1px solid ${colors.borderColor}`,
+      boxShadow: 'none !important',
+      width: '100%',
+    },
+    toolbar: {
+      justifyContent: 'space-between',
+      padding: '25px 45px',
+    },
+    menuIcon: {
+      cursor: 'pointer',
+      marginRight: '10px',
     },
     iconBlock: {
-      paddingRight: '35px',
-      paddingTop: '10px',
+      paddingRight: '35px !important',
+      paddingTop: '5px !important',
       borderRight: `1px solid ${colors.borderColor}`,
     },
     themeIcon: {
-      marginRight: '45px',
+      marginRight: '20px !important',
     },
     searchBlock: {
       display: 'flex',
-      borderRadius: '8px',
-      marginLeft: '28px',
+      borderRadius: '8px !important',
+      marginLeft: '28px !important',
       backgroundColor: `${colors.primary[600]}`,
+      maxHeight: '45px',
     },
     searchIcon: {
       '&:hover': {
-        backgroundColor: 'transparent',
+        backgroundColor: 'transparent !important',
       },
     },
     searchInput: {
-      padding: '18px 12px',
+      padding: '8px 12px !important',
     },
   };
-
-  // return {
-  //   root: {
-  //     display: 'flex !important',
-  //     justifyContent: 'space-between !important',
-  //     alignItems: 'center !important',
-  //     padding: '32px 24px !important',
-  //     backgroundColor: colors.primary.DEFAULT + '!important',
-  //     maxHeight: '95px !important',
-  //     borderBottom: `1px solid ${colors.borderColor} !important`,
-  //   },
-  //   iconBlock: {
-  //     paddingRight: '35px !important',
-  //     paddingTop: '5px !important',
-  //     borderRight: `1px solid ${colors.borderColor} !important`,
-  //   },
-  //   themeIcon: {
-  //     marginRight: '20px !important',
-  //   },
-  //   searchBlock: {
-  //     display: 'flex',
-  //     borderRadius: '8px !important',
-  //     marginLeft: '28px !important',
-  //     backgroundColor: `${colors.primary[600]} !important`,
-  //   },
-  //   searchIcon: {
-  //     '&:hover': {
-  //       backgroundColor: 'transparent !important',
-  //     },
-  //   },
-  //   searchInput: {
-  //     padding: '8px 12px !important',
-  //   },
-  // };
 });
