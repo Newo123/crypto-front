@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
-import { ChangeEvent, FC, useState } from 'react';
+import { FC, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AppError } from '../../common/errors';
 import { login } from '../../store/slice/auth';
@@ -18,15 +19,21 @@ const AuthRootComponent: FC = (): JSX.Element => {
   const location = useLocation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
 
-  const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  console.log('errors', errors);
 
+  const handleSubmitForm = async (data: any) => {
+    console.log('data', data);
     if (location.pathname === '/login') {
       try {
         const user = await instance.post('/auth/login', {
-          email,
-          password,
+          email: data.email,
+          password: data.password,
         });
         await dispatch(login(user.data));
         navigate('/');
@@ -60,7 +67,7 @@ const AuthRootComponent: FC = (): JSX.Element => {
 
   return (
     <div className={styles.root}>
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <form onSubmit={handleSubmit(handleSubmitForm)} className={styles.form}>
         <Box
           display="flex"
           justifyContent="center"
@@ -74,9 +81,9 @@ const AuthRootComponent: FC = (): JSX.Element => {
         >
           {location.pathname === '/login' ? (
             <LoginPage
-              setEmail={setEmail}
-              setPassword={setPassword}
               navigate={navigate}
+              register={register}
+              errors={errors}
             />
           ) : location.pathname === '/register' ? (
             <RegisterPage

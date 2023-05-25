@@ -4,9 +4,9 @@ import { IPropsLoginPage } from '../../../common/types/auth';
 import styles from './style.module.scss';
 
 const LoginPage: FC<IPropsLoginPage> = ({
-  setPassword,
-  setEmail,
   navigate,
+  register,
+  errors,
 }: IPropsLoginPage): JSX.Element => {
   return (
     <>
@@ -19,21 +19,32 @@ const LoginPage: FC<IPropsLoginPage> = ({
       </Typography>
 
       <TextField
+        error={!!errors.email}
         fullWidth={true}
         margin="normal"
         label="Email"
         variant="outlined"
         placeholder="Введите ваш email"
-        onChange={(e) => setEmail(e.target.value)}
+        {...register('email', {
+          required: 'Это обязательное поле',
+          pattern:
+            /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        })}
+        helperText={errors.email ? `${errors.email.message}` : ''}
       />
       <TextField
+        error={!!errors.password}
         fullWidth={true}
         margin="normal"
         label="Password"
         variant="outlined"
         placeholder="Введите ваш пароль"
         type="password"
-        onChange={(e) => setPassword(e.target.value)}
+        {...register('password', {
+          required: 'Это обязательное поле',
+          minLength: 6,
+        })}
+        helperText={errors.password ? `${errors.password.message}` : ''}
       />
       <Button
         sx={{
