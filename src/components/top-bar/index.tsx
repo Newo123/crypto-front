@@ -1,43 +1,94 @@
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import SearchIcon from '@mui/icons-material/Search';
-import { Box, Grid, IconButton, InputBase, useTheme } from '@mui/material';
+import {
+  DarkMode,
+  LightMode,
+  MenuOutlined,
+  NotificationsNone,
+  Search,
+} from '@mui/icons-material';
+import {
+  AppBar,
+  Box,
+  Grid,
+  IconButton,
+  InputBase,
+  Toolbar,
+  Typography,
+  useTheme,
+} from '@mui/material';
 import { FC, useContext } from 'react';
 import { ColorModeContext } from '../../theme';
 import { useAppSelector } from '../../utils/hooks';
+import FlexBetween from '../flex-between';
 import { useStyles } from './styles';
 
-const TopBarComponent: FC = (): JSX.Element => {
+interface ITopBar {
+  isOpen: boolean;
+  setIsOpen: (value: boolean) => void;
+}
+
+const TopBarComponent: FC<ITopBar> = ({
+  isOpen,
+  setIsOpen,
+}: ITopBar): JSX.Element => {
   const theme = useTheme();
   const colorMode: any = useContext(ColorModeContext);
   const classes = useStyles();
   const user = useAppSelector((state) => state.auth.user);
 
   return (
-    <Box className={classes.root} sx={{ flexGrow: 1 }}>
-      <Grid>Welcome Alex</Grid>
-      <Box display="flex">
-        <Grid onClick={colorMode.toggleColorMode} className={classes.iconBlock}>
-          <IconButton className={classes.themeIcon}>
-            {theme.palette.mode === 'dark' ? (
-              <DarkModeIcon />
-            ) : (
-              <LightModeIcon />
-            )}
-          </IconButton>
-          <IconButton>
-            <NotificationsNoneIcon />
-          </IconButton>
-        </Grid>
-        <Grid className={classes.searchBlock}>
-          <IconButton className={classes.searchIcon}>
-            <SearchIcon />
-          </IconButton>
-          <InputBase className={classes.searchInput} placeholder="Поиск" />
-        </Grid>
-      </Box>
-    </Box>
+    <AppBar className={classes.root} position="static">
+      <Toolbar className={classes.toolbar}>
+        <FlexBetween>
+          <MenuOutlined
+            className={classes.menuIcon}
+            onClick={() => setIsOpen(!isOpen)}
+          />
+          <Typography variant="h3">Welcome Alex</Typography>
+        </FlexBetween>
+        <Box display="flex">
+          <Grid
+            onClick={colorMode.toggleColorMode}
+            className={classes.iconBlock}
+          >
+            <IconButton className={classes.themeIcon}>
+              {theme.palette.mode === 'dark' ? <DarkMode /> : <LightMode />}
+            </IconButton>
+            <IconButton>
+              <NotificationsNone />
+            </IconButton>
+          </Grid>
+          <Grid className={classes.searchBlock}>
+            <IconButton className={classes.searchIcon}>
+              <Search />
+            </IconButton>
+            <InputBase className={classes.searchInput} placeholder="Поиск" />
+          </Grid>
+        </Box>
+      </Toolbar>
+    </AppBar>
+    // <Box className={classes.root} sx={{ flexGrow: 1 }}>
+    //   <Grid>Welcome Alex</Grid>
+    //   <Box display="flex">
+    //     <Grid onClick={colorMode.toggleColorMode} className={classes.iconBlock}>
+    //       <IconButton className={classes.themeIcon}>
+    //         {theme.palette.mode === 'dark' ? (
+    //           <DarkModeIcon />
+    //         ) : (
+    //           <LightModeIcon />
+    //         )}
+    //       </IconButton>
+    //       <IconButton>
+    //         <NotificationsNoneIcon />
+    //       </IconButton>
+    //     </Grid>
+    //     <Grid className={classes.searchBlock}>
+    //       <IconButton className={classes.searchIcon}>
+    //         <SearchIcon />
+    //       </IconButton>
+    //       <InputBase className={classes.searchInput} placeholder="Поиск" />
+    //     </Grid>
+    //   </Box>
+    // </Box>
   );
 };
 

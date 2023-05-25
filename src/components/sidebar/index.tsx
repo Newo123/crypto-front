@@ -38,7 +38,7 @@ const SidebarComponent: FC<ISidebar> = ({
   }, [pathname]);
 
   return (
-    <Box component="nav" sx={{ width: '250px' }}>
+    <Box component="nav">
       {isOpen && (
         <Drawer
           anchor="left"
