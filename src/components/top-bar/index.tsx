@@ -38,7 +38,7 @@ const TopBarComponent: FC<ITopBar> = ({
             onClick={() => setIsOpen(!isOpen)}
           />
           <Typography variant="h3">
-            Добро пожаловать! {sessionStorage.getItem('user')}
+            Добро пожаловать, {sessionStorage.getItem('user')}
           </Typography>
         </FlexBetween>
         <Box display="flex">
