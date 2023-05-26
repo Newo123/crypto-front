@@ -39,5 +39,11 @@ export const useStyles = makeStyles((theme: Theme) => {
     icons: {
       color: colors.secondary.DEFAULT,
     },
+
+    active: {
+      backgroundColor: '#1900D5 !important',
+      color: '#fff !important',
+      borderRadius: '4px !important',
+    },
   };
 });

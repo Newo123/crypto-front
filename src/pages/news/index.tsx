@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-const NewsComponent: FC = () => {
+const NewsComponent: FC = (): JSX.Element => {
   return <h1>News</h1>;
 };
 

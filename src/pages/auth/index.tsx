@@ -10,12 +10,13 @@ import { useAppDispatch } from '../../utils/hooks';
 import { LoginSchema, RegisterSchema } from '../../utils/yup';
 import LoginPage from './login';
 import RegisterPage from './register';
-import styles from './style.module.scss';
+import { useStyles } from './styles';
 
 const AuthRootComponent: FC = (): JSX.Element => {
   const location = useLocation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const classes = useStyles();
   const {
     register,
     formState: { errors },
@@ -65,8 +66,8 @@ const AuthRootComponent: FC = (): JSX.Element => {
   };
 
   return (
-    <div className={styles.root}>
-      <form onSubmit={handleSubmit(handleSubmitForm)} className={styles.form}>
+    <div className={classes.root}>
+      <form onSubmit={handleSubmit(handleSubmitForm)} className={classes.form}>
         <Box
           display="flex"
           justifyContent="center"
@@ -76,7 +77,7 @@ const AuthRootComponent: FC = (): JSX.Element => {
           margin="auto"
           padding={5}
           borderRadius={5}
-          boxShadow="5px 5px 10px #ccc"
+          boxShadow="-3px -2px 20px 1px #202020"
         >
           {location.pathname === '/login' ? (
             <LoginPage

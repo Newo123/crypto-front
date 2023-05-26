@@ -17,7 +17,7 @@ import Logo from '../../assets/images/sidebar/logo.svg';
 import { ISidebar } from '../../common/types/sidebar';
 import { tokens } from '../../theme';
 import FlexBetween from '../flex-between';
-import { NavBarComponent } from './navmenu';
+import { NavBarComponent } from './navbar';
 import { useStyles } from './styles';
 
 const SidebarComponent: FC<ISidebar> = ({
@@ -34,7 +34,7 @@ const SidebarComponent: FC<ISidebar> = ({
   const colors = tokens(theme.palette.mode);
 
   useEffect(() => {
-    setActive(pathname.substring(1));
+    setActive(pathname);
   }, [pathname]);
 
   return (
@@ -72,7 +72,7 @@ const SidebarComponent: FC<ISidebar> = ({
               </FlexBetween>
             </Box>
             <List className={classes.navList}>
-              <NavBarComponent />
+              <NavBarComponent active={active} />
             </List>
           </Box>
           <Box width="100%">
