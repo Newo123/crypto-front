@@ -4,9 +4,8 @@ import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AppError } from '../../common/errors';
-import { login } from '../../store/slice/auth';
-import { instance } from '../../utils/axios';
-import { useAppDispatch } from '../../utils/hooks';
+import { loginUser, registerUser } from '../../store/thunks/auth';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import { LoginSchema, RegisterSchema } from '../../utils/yup';
 import LoginPage from './login';
 import RegisterPage from './register';
@@ -28,14 +27,12 @@ const AuthRootComponent: FC = (): JSX.Element => {
     ),
   });
 
+  const loading = useAppSelector((state) => state.auth.isLoading);
+
   const handleSubmitForm = async (data: any) => {
     if (location.pathname === '/login') {
       try {
-        const user = await instance.post('/auth/login', {
-          email: data.email,
-          password: data.password,
-        });
-        await dispatch(login(user.data));
+        await dispatch(loginUser(data));
         navigate('/');
       } catch (e) {
         if (e instanceof Error) {
@@ -45,13 +42,13 @@ const AuthRootComponent: FC = (): JSX.Element => {
     } else {
       if (data.password === data.confirmPassword) {
         try {
-          const newUser = await instance.post('auth/register', {
+          const newUser = {
             name: data.name,
             userName: data.username,
             email: data.email,
             password: data.password,
-          });
-          await dispatch(login(newUser.data));
+          };
+          await dispatch(registerUser(newUser));
           navigate('/');
         } catch (error) {
           if (error instanceof Error) {
@@ -84,12 +81,14 @@ const AuthRootComponent: FC = (): JSX.Element => {
               navigate={navigate}
               register={register}
               errors={errors}
+              loading={loading}
             />
           ) : location.pathname === '/register' ? (
             <RegisterPage
               navigate={navigate}
               register={register}
               errors={errors}
+              loading={loading}
             />
           ) : null}
         </Box>
