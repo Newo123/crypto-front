@@ -16,15 +16,11 @@ import {
   useTheme,
 } from '@mui/material';
 import { FC, useContext } from 'react';
+import { ITopBar } from '../../common/types/top-bar';
 import { ColorModeContext } from '../../theme';
 import { useAppSelector } from '../../utils/hooks';
 import FlexBetween from '../flex-between';
 import { useStyles } from './styles';
-
-interface ITopBar {
-  isOpen: boolean;
-  setIsOpen: (value: boolean) => void;
-}
 
 const TopBarComponent: FC<ITopBar> = ({
   isOpen,
@@ -43,7 +39,7 @@ const TopBarComponent: FC<ITopBar> = ({
             className={classes.menuIcon}
             onClick={() => setIsOpen(!isOpen)}
           />
-          <Typography variant="h3">Welcome Alex</Typography>
+          <Typography variant="h3">Добро пожаловать! Kill-Rill</Typography>
         </FlexBetween>
         <Box display="flex">
           <Grid

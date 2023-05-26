@@ -1,11 +1,11 @@
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { Route, Routes } from 'react-router';
-import AuthRootComponent from './components/auth';
-import Home from './components/home/home';
 import LayoutComponent from './components/layout';
-import NewsComponent from './components/news';
-import SettingsComponent from './components/settings';
-import WatchListComponent from './components/watchlist';
+import AuthRootComponent from './pages/auth';
+import Home from './pages/home/home';
+import NewsComponent from './pages/news';
+import SettingsComponent from './pages/settings';
+import WatchListComponent from './pages/watchlist';
 import { ColorModeContext, useMode } from './theme';
 import PrivateRoute from './utils/router/privateRoute';
 

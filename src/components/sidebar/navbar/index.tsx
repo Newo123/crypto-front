@@ -13,9 +13,12 @@ import {
 } from '@mui/material';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { INavBar } from '../../../common/types/navbar';
 import { useStyles } from '../styles';
 
-export const NavBarComponent: FC = (): JSX.Element => {
+export const NavBarComponent: FC<INavBar> = ({
+  active,
+}: INavBar): JSX.Element => {
   const navigate = useNavigate();
   const classes = useStyles();
 
@@ -52,7 +55,11 @@ export const NavBarComponent: FC = (): JSX.Element => {
         return (
           <ListItem key={el.id}>
             <ListItemButton
-              className={classes.navItem}
+              className={
+                active === el.path
+                  ? `${classes.navItem} ${classes.active}`
+                  : `${classes.navItem}`
+              }
               onClick={() => navigate(`${el.path}`)}
             >
               <ListItemIcon>{el.icon}</ListItemIcon>

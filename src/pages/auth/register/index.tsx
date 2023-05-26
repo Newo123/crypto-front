@@ -1,13 +1,15 @@
-import { Button, TextField, Typography } from '@mui/material';
+import { TextField, Typography } from '@mui/material';
 import { FC } from 'react';
 import { IPropsRegisterPage } from '../../../common/types/auth';
-import styles from './style.module.scss';
+import AppButton from '../../../components/app-button';
+import { useStyles } from './styles';
 
 const RegisterPage: FC<IPropsRegisterPage> = ({
   navigate,
   register,
   errors,
 }: IPropsRegisterPage): JSX.Element => {
+  const classes = useStyles();
   return (
     <>
       <Typography variant="h2" textAlign="center">
@@ -72,23 +74,15 @@ const RegisterPage: FC<IPropsRegisterPage> = ({
         }
         {...register('confirmPassword')}
       />
-      <Button
-        sx={{
-          marginTop: 2,
-          marginBottom: 2,
-          width: '70%',
-        }}
-        variant="contained"
-        type="submit"
-      >
+      <AppButton variant="contained" type="submit">
         Зарегистрироваться
-      </Button>
+      </AppButton>
 
       <Typography variant="body1">
         У вас есть аккаунта?{' '}
         <span
           onClick={() => navigate('/login')}
-          className={styles.incitingText}
+          className={classes.incitingText}
         >
           Авторизация
         </span>

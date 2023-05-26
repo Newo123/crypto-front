@@ -1,13 +1,15 @@
-import { Button, TextField, Typography } from '@mui/material';
+import { TextField, Typography } from '@mui/material';
 import { FC } from 'react';
 import { IPropsLoginPage } from '../../../common/types/auth';
-import styles from './style.module.scss';
+import AppButton from '../../../components/app-button';
+import { useStyles } from './styles';
 
 const LoginPage: FC<IPropsLoginPage> = ({
   navigate,
   register,
   errors,
 }: IPropsLoginPage): JSX.Element => {
+  const classes = useStyles();
   return (
     <>
       <Typography variant="h2" textAlign="center">
@@ -32,30 +34,22 @@ const LoginPage: FC<IPropsLoginPage> = ({
         error={!!errors.password}
         fullWidth={true}
         margin="normal"
-        label="Password"
+        label="Пароль"
         variant="outlined"
         placeholder="Введите ваш пароль"
         type="password"
         {...register('password')}
         helperText={errors.password ? `${errors.password.message}` : ''}
       />
-      <Button
-        sx={{
-          marginTop: 2,
-          marginBottom: 2,
-          width: '70%',
-        }}
-        variant="contained"
-        type="submit"
-      >
+      <AppButton variant="contained" type="submit">
         Войти
-      </Button>
+      </AppButton>
 
       <Typography variant="body1">
         У вас нет аккаунта?{' '}
         <span
           onClick={() => navigate('/register')}
-          className={styles.incitingText}
+          className={classes.incitingText}
         >
           Регистрация
         </span>
