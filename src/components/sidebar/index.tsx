@@ -59,7 +59,7 @@ const SidebarComponent: FC<ISidebar> = ({
             <Box>
               <FlexBetween>
                 <Box className={classes.brand} onClick={() => navigate('/')}>
-                  <img src={Logo} alt="Logo image" />
+                  <img src={Logo} alt="Logo" />
                   <Typography variant="h1" className={classes.brandTitle}>
                     Demo
                   </Typography>
