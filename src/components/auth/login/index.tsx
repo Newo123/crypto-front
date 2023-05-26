@@ -25,11 +25,7 @@ const LoginPage: FC<IPropsLoginPage> = ({
         label="Email"
         variant="outlined"
         placeholder="Введите ваш email"
-        {...register('email', {
-          required: 'Это обязательное поле',
-          pattern:
-            /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-        })}
+        {...register('email')}
         helperText={errors.email ? `${errors.email.message}` : ''}
       />
       <TextField
@@ -40,10 +36,7 @@ const LoginPage: FC<IPropsLoginPage> = ({
         variant="outlined"
         placeholder="Введите ваш пароль"
         type="password"
-        {...register('password', {
-          required: 'Это обязательное поле',
-          minLength: 6,
-        })}
+        {...register('password')}
         helperText={errors.password ? `${errors.password.message}` : ''}
       />
       <Button

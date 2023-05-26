@@ -9,13 +9,13 @@ export interface IPropsLoginPage<
   errors: FieldErrors<TFieldValues>;
 }
 
-export interface IPropsRegisterPage {
-  setName: (value: string) => void;
-  setEmail: (value: string) => void;
-  setPassword: (value: string) => void;
-  setRepeatPassword: (value: string) => void;
-  setUserName: (value: string) => void;
+export interface IPropsRegisterPage<
+  TFieldValues extends FieldValues = FieldValues,
+  TContext = any,
+> {
   navigate: (to: string) => void;
+  register: UseFormRegister<TFieldValues>;
+  errors: FieldErrors<TFieldValues>;
 }
 
 export interface IAuthState {
