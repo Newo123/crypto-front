@@ -1,5 +1,6 @@
 import { Box, Grid } from '@mui/material';
 import { FC, useCallback, useEffect, useMemo, useRef } from 'react';
+import AreaChart from '../../components/charts/area-chart';
 import { getFavoriteAssets } from '../../store/thunks/assets';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import { useStyles } from './styles';
@@ -44,7 +45,7 @@ const Home: FC = (): JSX.Element => {
     const currentPrice = element.data.prices[0];
     const currentCap = element.data.market_caps[0];
     return (
-      <Grid item xs={12} sm={6} lg={6}>
+      <Grid item xs={12} sm={6} lg={6} key={element.name}>
         <Grid container className={classes.topCardItem}>
           <Grid item xs={12} sm={6} lg={6}>
             <h3 className={classes.assetName}>{element.name}</h3>
@@ -58,7 +59,7 @@ const Home: FC = (): JSX.Element => {
             </div>
           </Grid>
           <Grid item xs={12} sm={6} lg={6}>
-            {element.name}
+            <AreaChart data={element.data.prices} />
           </Grid>
         </Grid>
       </Grid>
