@@ -18,7 +18,6 @@ import {
 import { FC, useContext } from 'react';
 import { ITopBar } from '../../common/types/top-bar';
 import { ColorModeContext } from '../../theme';
-import { useAppSelector } from '../../utils/hooks';
 import FlexBetween from '../flex-between';
 import { useStyles } from './styles';
 
@@ -29,7 +28,6 @@ const TopBarComponent: FC<ITopBar> = ({
   const theme = useTheme();
   const colorMode: any = useContext(ColorModeContext);
   const classes = useStyles();
-  const user = useAppSelector((state) => state.auth.user);
 
   return (
     <AppBar className={classes.root} position="static">
@@ -39,7 +37,9 @@ const TopBarComponent: FC<ITopBar> = ({
             className={classes.menuIcon}
             onClick={() => setIsOpen(!isOpen)}
           />
-          <Typography variant="h3">Добро пожаловать! Kill-Rill</Typography>
+          <Typography variant="h3">
+            Добро пожаловать! {sessionStorage.getItem('user')}
+          </Typography>
         </FlexBetween>
         <Box display="flex">
           <Grid
