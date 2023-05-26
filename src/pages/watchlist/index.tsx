@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
-const WatchListComponent: FC = (): JSX.Element => {
+const WatchList: FC = (): JSX.Element => {
   return <h1>WatchList</h1>;
 };
 
-export default WatchListComponent;
+export default WatchList;
