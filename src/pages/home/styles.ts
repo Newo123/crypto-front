@@ -10,6 +10,9 @@ export const useStyles = makeStyles((theme: Theme) => {
       flexGrow: 1,
       padding: '32px',
     },
+    graph: {
+      alignSelf: 'flex-end',
+    },
     topCardItem: {
       backgroundColor: `${
         theme.palette.mode === 'light'
@@ -32,18 +35,31 @@ export const useStyles = makeStyles((theme: Theme) => {
       height: '100% !important',
       flexDirection: 'column',
       justifyContent: 'flex-end',
-      paddingBottom: '20px !important',
+      paddingBottom: '35px !important',
     },
     cardPrice: {
       fontSize: 32,
       fontWeight: 700,
       lineHeight: '48px !important',
     },
-    cardCapitalize: {
-      color: `${colors.secondary.DEFAULT}`,
-      fontSize: 18,
+    priceTrend: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '4px',
+      fontSize: '12px !important',
       fontWeight: 400,
       lineHeight: '21px !important',
+      borderRadius: '4px',
+      padding: '4px',
+      width: 'max-content',
+    },
+    Up: {
+      color: '#037400',
+      backgroundColor: '#A9FFA7',
+    },
+    Down: {
+      color: '#740000',
+      backgroundColor: '#FFA7A7',
     },
   };
 });

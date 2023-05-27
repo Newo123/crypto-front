@@ -1,5 +1,7 @@
 import { Box, Grid } from '@mui/material';
 import { FC, useCallback, useEffect, useMemo, useRef } from 'react';
+import TrendDown from '../../assets/images/chart/trend-down.svg';
+import TrendUp from '../../assets/images/chart/trend-up.svg';
 import AreaChart from '../../components/charts/area-chart';
 import { getFavoriteAssets } from '../../store/thunks/assets';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
@@ -41,25 +43,43 @@ const Home: FC = (): JSX.Element => {
   }, [favoriteAssetName, fetchData]);
 
   const renderFavoriteBlock = filtredArray.map((element: any) => {
-    console.log('Element', element);
-    const currentPrice = element.data.prices[0];
-    const currentCap = element.data.market_caps[0];
+    console.log('Element ', element);
+    const currentPrice = element.singleAsset.map(
+      (element: any) => element.current_price,
+    );
+    // const currentCap = element.singleAsset.map(
+    //   (element: any) => element.market_cap,
+    // );
+
+    const changePrice = element.singleAsset.map(
+      (element: any) => element.market_cap_change_percentage_24h,
+    );
+
     return (
       <Grid item xs={12} sm={6} lg={6} key={element.name}>
         <Grid container className={classes.topCardItem}>
           <Grid item xs={12} sm={6} lg={6}>
             <h3 className={classes.assetName}>{element.name}</h3>
             <div className={classes.itemDetails}>
-              <h3 className={classes.cardPrice}>
-                ${currentPrice[1].toFixed(2)}
-              </h3>
-              <p className={classes.cardCapitalize}>
-                {currentCap[1].toFixed(0)}
+              <h3 className={classes.cardPrice}>${currentPrice}</h3>
+              <p
+                className={
+                  changePrice > 0
+                    ? `${classes.priceTrend} ${classes.Up}`
+                    : `${classes.priceTrend} ${classes.Down}`
+                }
+              >
+                {changePrice > 0 ? (
+                  <img src={TrendUp} alt="up" />
+                ) : (
+                  <img src={TrendDown} alt="down" />
+                )}
+                <span>{Number(changePrice).toFixed(2)} %</span>
               </p>
             </div>
           </Grid>
-          <Grid item xs={12} sm={6} lg={6}>
-            <AreaChart data={element.data.prices} />
+          <Grid className={classes.graph} item xs={12} sm={6} lg={6}>
+            <AreaChart data={element.data} />
           </Grid>
         </Grid>
       </Grid>

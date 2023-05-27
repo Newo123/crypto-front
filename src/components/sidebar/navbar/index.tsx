@@ -62,7 +62,11 @@ export const NavBarComponent: FC<INavBar> = ({
               }
               onClick={() => navigate(`${el.path}`)}
             >
-              <ListItemIcon>{el.icon}</ListItemIcon>
+              <ListItemIcon
+              // className={active === el.path && classes.activeIcon}
+              >
+                {el.icon}
+              </ListItemIcon>
               <ListItemText>
                 <Typography variant="body1">{el.name}</Typography>
               </ListItemText>
