@@ -10,6 +10,9 @@ export const useStyles = makeStyles((theme: Theme) => {
       flexGrow: 1,
       padding: '32px',
     },
+    areaChart: {
+      marginBottom: '32px',
+    },
     graph: {
       alignSelf: 'flex-end',
     },
@@ -60,6 +63,17 @@ export const useStyles = makeStyles((theme: Theme) => {
     Down: {
       color: '#740000',
       backgroundColor: '#FFA7A7',
+    },
+    lineChartBlock: {
+      backgroundColor: `${
+        theme.palette.mode === 'light'
+          ? colors.primary.DEFAULT
+          : colors.primary[600]
+      }`,
+      padding: '20px 16px',
+      minHeight: 270,
+      border: `1px solid ${colors.borderColor}`,
+      borderRadius: 12,
     },
   };
 });
