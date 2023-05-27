@@ -2,13 +2,15 @@ import { Box, Grid } from '@mui/material';
 import { FC, useCallback, useEffect, useMemo, useRef } from 'react';
 import TrendDown from '../../assets/images/chart/trend-down.svg';
 import TrendUp from '../../assets/images/chart/trend-up.svg';
+import { IChartData } from '../../common/types/assets';
 import AreaChart from '../../components/charts/area-chart';
+import LineChart from '../../components/charts/line-chart';
 import { getFavoriteAssets } from '../../store/thunks/assets';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import { useStyles } from './styles';
 
 const Home: FC = (): JSX.Element => {
-  const favoriteAssets: any[] = useAppSelector(
+  const favoriteAssets: IChartData[] = useAppSelector(
     (state) => state.assets.favoriteAssets,
   );
   const dispatch = useAppDispatch();
@@ -43,13 +45,12 @@ const Home: FC = (): JSX.Element => {
   }, [favoriteAssetName, fetchData]);
 
   const renderFavoriteBlock = filtredArray.map((element: any) => {
-    console.log('Element ', element);
-    const currentPrice = element.singleAsset.map(
-      (element: any) => element.current_price,
-    );
     // const currentCap = element.singleAsset.map(
     //   (element: any) => element.market_cap,
     // );
+    const currentPrice = element.singleAsset.map(
+      (element: any) => element.current_price,
+    );
 
     const changePrice = element.singleAsset.map(
       (element: any) => element.market_cap_change_percentage_24h,
@@ -79,7 +80,7 @@ const Home: FC = (): JSX.Element => {
             </div>
           </Grid>
           <Grid className={classes.graph} item xs={12} sm={6} lg={6}>
-            <AreaChart data={element.data} />
+            <AreaChart data={element.price_chart_data} />
           </Grid>
         </Grid>
       </Grid>
@@ -88,8 +89,13 @@ const Home: FC = (): JSX.Element => {
 
   return (
     <Box className={classes.root}>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} className={classes.areaChart}>
         {renderFavoriteBlock}
+      </Grid>
+      <Grid container className={classes.lineChartBlock}>
+        <Grid item xs={12} sm={12} lg={12}>
+          {filtredArray.length && <LineChart data={filtredArray} />}
+        </Grid>
       </Grid>
     </Box>
   );
