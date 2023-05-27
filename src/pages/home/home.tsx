@@ -2,7 +2,7 @@ import { Box, Grid } from '@mui/material';
 import { FC, useCallback, useEffect, useMemo, useRef } from 'react';
 import TrendDown from '../../assets/images/chart/trend-down.svg';
 import TrendUp from '../../assets/images/chart/trend-up.svg';
-import { IChartData } from '../../common/types/assets';
+import { IChartData, ISingleAsset } from '../../common/types/assets';
 import AreaChart from '../../components/charts/area-chart';
 import LineChart from '../../components/charts/line-chart';
 import { getFavoriteAssets } from '../../store/thunks/assets';
@@ -44,17 +44,17 @@ const Home: FC = (): JSX.Element => {
     fetchData(favoriteAssetName);
   }, [favoriteAssetName, fetchData]);
 
-  const renderFavoriteBlock = filtredArray.map((element: any) => {
+  const renderFavoriteBlock = filtredArray.map((element: IChartData) => {
     // const currentCap = element.singleAsset.map(
     //   (element: any) => element.market_cap,
     // );
-    const currentPrice = element.singleAsset.map(
-      (element: any) => element.current_price,
-    );
 
-    const changePrice = element.singleAsset.map(
-      (element: any) => element.market_cap_change_percentage_24h,
-    );
+    let currentPrice = 0,
+      changePrice = 0;
+    element.singleAsset.forEach((element: ISingleAsset) => {
+      currentPrice = element.current_price;
+      changePrice = element.market_cap_change_percentage_24h;
+    });
 
     return (
       <Grid item xs={12} sm={6} lg={6} key={element.name}>
