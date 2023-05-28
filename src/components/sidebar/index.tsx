@@ -17,6 +17,8 @@ import Logo from '../../assets/images/sidebar/logo.svg';
 import { ISidebar } from '../../common/types/sidebar';
 import { tokens } from '../../theme';
 import FlexBetween from '../flex-between';
+import SearchBarComponent from '../search-bar';
+import ThemeSwitcherComponent from '../theme-switcher';
 import { NavBarComponent } from './navbar';
 import { useStyles } from './styles';
 
@@ -72,11 +74,25 @@ const SidebarComponent: FC<ISidebar> = ({
               </FlexBetween>
             </Box>
             <List className={classes.navList}>
+              <List>
+                {!isNonMobile && (
+                  <ListItem>
+                    <SearchBarComponent />
+                  </ListItem>
+                )}
+              </List>
               <NavBarComponent active={active} />
             </List>
           </Box>
           <Box width="100%">
             <List>
+              {!isNonMobile && (
+                <ListItem>
+                  <Box padding="5px">
+                    <ThemeSwitcherComponent />
+                  </Box>
+                </ListItem>
+              )}
               <ListItem>
                 <ListItemButton className={classes.navItem}>
                   <ListItemIcon>

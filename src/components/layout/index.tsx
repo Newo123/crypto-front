@@ -8,7 +8,7 @@ import { useStyles } from './style';
 const LayoutComponent: FC = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const location = useLocation();
-  const isNonMobile = useMediaQuery('(min-width: 600px)');
+  const isNonMobile = useMediaQuery('(min-width: 760px)');
   const classes = useStyles();
 
   return location.pathname === '/login' || location.pathname === '/register' ? (
@@ -29,7 +29,11 @@ const LayoutComponent: FC = (): JSX.Element => {
         setIsOpen={setIsOpen}
       />
       <Box className={classes.mainSection}>
-        <TopBarComponent isOpen={isOpen} setIsOpen={setIsOpen} />
+        <TopBarComponent
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          isNonMobile={isNonMobile}
+        />
         <Outlet />
       </Box>
     </Box>

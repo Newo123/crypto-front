@@ -112,27 +112,19 @@ export const themeSettings: any = (mode: string) => {
       fontSize: 14,
       h1: {
         fontFamily: ['Poppins', 'sans-serif'].join(','),
-        fontSize: 40,
-        fontWeight: 600,
+        fontSize: 28,
       },
       h2: {
         fontFamily: ['Poppins', 'sans-serif'].join(','),
-        fontSize: 35,
-        fontWeight: 600,
+        fontSize: 20,
       },
       h3: {
         fontFamily: ['Poppins', 'sans-serif'].join(','),
-        fontSize: 30,
-        fontWeight: 500,
-      },
-      h4: {
-        fontFamily: ['Poppins', 'sans-serif'].join(','),
-        fontSize: 25,
-        fontWeight: 500,
+        fontSize: 18,
       },
       p: {
         fontFamily: ['Poppins', 'sans-serif'].join(','),
-        fontSize: 20,
+        fontSize: 14,
       },
     },
   };
