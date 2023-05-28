@@ -70,10 +70,39 @@ export const useStyles = makeStyles((theme: Theme) => {
           ? colors.primary.DEFAULT
           : colors.primary[600]
       }`,
+      marginBottom: 32,
       padding: '20px 16px',
       minHeight: 270,
       border: `1px solid ${colors.borderColor}`,
       borderRadius: 12,
+    },
+    topPriceRoot: {
+      backgroundColor: `${
+        theme.palette.mode === 'light'
+          ? colors.primary.DEFAULT
+          : colors.primary[600]
+      }`,
+      padding: '20px 16px',
+      marginBottom: 32,
+      minHeight: 270,
+      border: `1px solid ${colors.borderColor}`,
+      borderRadius: 12,
+    },
+    moreButton: {
+      maxWidth: '300px !important',
+      width: '100% !important',
+      maxHeight: '50px !important',
+      padding: '10px 0 !important',
+      border: `1px solid ${colors.borderColor} !important`,
+      color: `${
+        theme.palette.mode === 'light'
+          ? colors.black.DEFAULT
+          : colors.white.DEFAULT
+      } !important`,
+      backgroundColor: `${
+        theme.palette.mode === 'light' ? colors.white[100] : colors.black[700]
+      } !important`,
+      alignSelf: 'flex-end',
     },
   };
 });
