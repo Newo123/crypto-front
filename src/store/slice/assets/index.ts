@@ -6,7 +6,7 @@ const initialState: any = {
   favoriteAssets: [],
 };
 
-export const assetsSlice = createSlice({
+export const assetSlice = createSlice({
   name: 'assets',
   initialState,
   reducers: {},
@@ -20,4 +20,4 @@ export const assetsSlice = createSlice({
   },
 });
 
-export default assetsSlice.reducer;
+export default assetSlice.reducer;
