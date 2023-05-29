@@ -10,7 +10,7 @@ import { getFavoriteAssets, getTopPriceData } from '../../store/thunks/assets';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import { useStyles } from './styles';
 
-const Home: FC = (): JSX.Element => {
+const HomePage: FC = (): JSX.Element => {
   const [more, setMore] = useState<number>(6);
   const favoriteAssets: IChartData[] = useAppSelector(
     (state) => state.assets.favoriteAssets,
@@ -128,4 +128,4 @@ const Home: FC = (): JSX.Element => {
   );
 };
 
-export default Home;
+export default HomePage;
