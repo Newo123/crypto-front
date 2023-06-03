@@ -1,5 +1,13 @@
-import { Avatar, Button, Grid, Typography } from '@mui/material';
-import { FC } from 'react';
+import {
+	Alert,
+	AlertColor,
+	Avatar,
+	Button,
+	Grid,
+	Snackbar,
+	Typography,
+} from '@mui/material';
+import { FC, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ISingleAsset } from '../../common/types/assets';
 import FlexBetween from '../../components/flex-between';
@@ -9,22 +17,37 @@ import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import { useStyles } from './styles';
 
 const AssetsPage: FC = (): JSX.Element => {
+	const [open, setOpen] = useState<boolean>(false);
+	const [severity, setSeverity] = useState<AlertColor>('success');
 	const navigate = useNavigate();
 	const { id } = useParams();
 	const dispatch = useAppDispatch();
 	const assetsArray: ISingleAsset[] = useAppSelector(
-		state => state.assets.assets
+		state => state.assets.assets,
 	);
 	const classes = useStyles();
 	const asset = assetsArray.find(a => a.name === (id as string));
 
 	const handleCreateRecord = () => {
-		if (asset) {
-			const data = {
-				name: asset.name,
-				assetId: asset.id
-			};
-			dispatch(createWatchListRecord(data));
+		try {
+			if (asset) {
+				const data = {
+					name: asset.name,
+					assetId: asset.id,
+				};
+				dispatch(createWatchListRecord(data));
+				setSeverity('success');
+				setOpen(true);
+				setTimeout(() => {
+					setOpen(false);
+				}, 3000);
+			}
+		} catch (error) {
+			setSeverity('error');
+			setOpen(true);
+			setTimeout(() => {
+				setOpen(false);
+			}, 3000);
 		}
 	};
 
@@ -105,6 +128,11 @@ const AssetsPage: FC = (): JSX.Element => {
 							Добавить в избранное
 						</Button>
 					</FlexCenter>
+					<Snackbar open={open} autoHideDuration={6000}>
+						<Alert severity={severity} sx={{ width: '100%' }}>
+							Asset added to favorites
+						</Alert>
+					</Snackbar>
 				</Grid>
 			)}
 		</>
