@@ -14,5 +14,5 @@ export const getWatchListElements = createAsyncThunk(
 				return rejectWithValue(error.message);
 			}
 		}
-	}
+	},
 );
