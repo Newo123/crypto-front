@@ -31,12 +31,12 @@ export const useStyles = makeStyles((theme: Theme) => {
 			width: '100%',
 			marginBottom: '15px !important',
 		},
-		buttonBlock: {
+		buttonSubmitForm: {
 			display: 'flex',
 			justifyContent: 'center',
 			maxWidth: '300px',
 			width: '100%',
-			marginTop: 32,
+			margin: '32px 0 !important',
 		},
 	};
 });

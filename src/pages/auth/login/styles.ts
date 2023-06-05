@@ -13,6 +13,11 @@ export const useStyles = makeStyles((theme: Theme) => {
 				},
 			},
 		},
+		input: {
+			'&.Mui-focused': {
+				borderColor: colors.blue,
+			},
+		},
 		incitingText: {
 			color: '#1900d5',
 			cursor: 'pointer',

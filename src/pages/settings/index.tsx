@@ -3,6 +3,8 @@ import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import { SyntheticEvent, useEffect, useState } from 'react';
+import ChangePasswordComponent from '../../components/change-password';
+import DeleteUserComponent from '../../components/delete-user';
 import PersonalInfoComponent from '../../components/personal-info';
 import TabPanel from '../../components/tab-panel';
 import { getPublicUser } from '../../store/thunks/auth';
@@ -46,10 +48,10 @@ const SettingsPage = () => {
 				<PersonalInfoComponent />
 			</TabPanel>
 			<TabPanel value={value} index={1}>
-				Item Two
+				<ChangePasswordComponent />
 			</TabPanel>
 			<TabPanel value={value} index={2}>
-				Item Three
+				<DeleteUserComponent />
 			</TabPanel>
 		</Grid>
 	);
