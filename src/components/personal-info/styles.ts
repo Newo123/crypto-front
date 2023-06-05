@@ -7,12 +7,6 @@ export const useStyles = makeStyles((theme: Theme) => {
 
 	return {
 		root: {
-			display: 'flex',
-			justifyContent: 'center',
-			alignItems: 'center',
-			width: '100vw',
-			height: '100vh',
-			padding: '20px',
 			'& .MuiOutlinedInput-root': {
 				'&.Mui-focused fieldset': {
 					borderColor: colors.blue,
@@ -26,13 +20,23 @@ export const useStyles = makeStyles((theme: Theme) => {
 				}`,
 			},
 		},
-		form: {
-			flex: 1,
+		formWrapper: {
+			display: 'flex',
+			flexDirection: 'column',
+			alignItems: 'center',
+			padding: '32px 0 !important',
 		},
-		incitingText: {
-			cursor: 'pointer',
-			marginLeft: '10px',
-			color: '#1900D5',
+		inputField: {
+			maxWidth: '400px',
+			width: '100%',
+			marginBottom: '15px !important',
+		},
+		buttonBlock: {
+			display: 'flex',
+			justifyContent: 'center',
+			maxWidth: '300px',
+			width: '100%',
+			marginTop: 32,
 		},
 	};
 });

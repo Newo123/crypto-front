@@ -11,7 +11,7 @@ export const instance = axios.create({
 });
 
 export const newsInstance = axios.create({
-	baseURL: 'https://min-api.cryptocompare.com/data/v2/',
+	baseURL: 'https://min-api.cryptocompare.com/data/v2',
 	timeout: 1000,
 });
 
@@ -25,7 +25,7 @@ export const instanceAuth = axios.create({
 });
 
 export const coinGeckoApi = axios.create({
-	baseURL: 'https://api.coingecko.com/api/v3',
+	baseURL: 'https://api.coingecko.com/api/v3/',
 	timeout: 1000,
 	headers: {
 		'X-Custom-Header': 'foobar',
