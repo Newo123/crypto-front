@@ -69,8 +69,7 @@ export const updateUserInfo = createAsyncThunk(
 	async (data: any, { rejectWithValue }) => {
 		try {
 			const user = await instanceAuth.patch('users', data);
-			console.log(user);
-			sessionStorage.setItem('name', user.data.name);
+			await sessionStorage.setItem('name', user.data.name);
 			return user.data;
 		} catch (error: any) {
 			if (error.response && error.response.data.message) {

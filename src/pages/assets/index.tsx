@@ -18,6 +18,7 @@ import { useStyles } from './styles';
 
 const AssetsPage: FC = (): JSX.Element => {
 	const [open, setOpen] = useState<boolean>(false);
+	const [error, setError] = useState<boolean>(false);
 	const [severity, setSeverity] = useState<AlertColor>('success');
 	const navigate = useNavigate();
 	const { id } = useParams();
@@ -36,6 +37,7 @@ const AssetsPage: FC = (): JSX.Element => {
 					assetId: asset.id,
 				};
 				dispatch(createWatchListRecord(data));
+				setError(false);
 				setSeverity('success');
 				setOpen(true);
 				setTimeout(() => {
@@ -43,6 +45,7 @@ const AssetsPage: FC = (): JSX.Element => {
 				}, 3000);
 			}
 		} catch (error) {
+			setError(true);
 			setSeverity('error');
 			setOpen(true);
 			setTimeout(() => {
@@ -130,7 +133,7 @@ const AssetsPage: FC = (): JSX.Element => {
 					</FlexCenter>
 					<Snackbar open={open} autoHideDuration={6000}>
 						<Alert severity={severity} sx={{ width: '100%' }}>
-							Asset added to favorites
+							{!error ? 'Asset added to favorites' : 'Something went wrong'}
 						</Alert>
 					</Snackbar>
 				</Grid>
