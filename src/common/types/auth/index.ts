@@ -1,4 +1,4 @@
-import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
+import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form'
 
 export interface IPropsLoginPage<
 	TFieldValues extends FieldValues = FieldValues,
@@ -21,12 +21,15 @@ export interface IPropsRegisterPage<
 }
 
 export interface IAuthState {
-	user: any;
+	user: {
+		user: IPublicUser;
+		token: string;
+	};
 	isLogged: boolean;
 	isLoading: boolean;
 }
 
-interface IPublicUser {
+export interface IPublicUser {
 	id: number | null;
 	name: string;
 	userName: string;
