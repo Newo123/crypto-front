@@ -2,6 +2,7 @@ import { MenuOutlined } from '@mui/icons-material';
 import { AppBar, Grid, Toolbar, Typography } from '@mui/material';
 import { FC } from 'react';
 import { ITopBar } from '../../common/types/top-bar';
+import { useAppSelector } from '../../utils/hooks';
 import FlexBetween from '../flex-between';
 import SearchBarComponent from '../search-bar';
 import ThemeSwitcherComponent from '../theme-switcher';
@@ -10,9 +11,10 @@ import { useStyles } from './styles';
 const TopBarComponent: FC<ITopBar> = ({
 	isOpen,
 	setIsOpen,
-	isNonMobile
+	isNonMobile,
 }: ITopBar): JSX.Element => {
 	const classes = useStyles();
+	const { user } = useAppSelector(state => state.auth.user);
 
 	return (
 		<AppBar className={classes.root} position='static'>
@@ -25,7 +27,7 @@ const TopBarComponent: FC<ITopBar> = ({
 								onClick={() => setIsOpen(!isOpen)}
 							/>
 							<Typography whiteSpace='nowrap' fontWeight={600} variant='h3'>
-								Добро пожаловать, {sessionStorage.getItem('user')}
+								Добро пожаловать, {user ? `${user.name}` : ' '}
 							</Typography>
 						</FlexBetween>
 					</Grid>

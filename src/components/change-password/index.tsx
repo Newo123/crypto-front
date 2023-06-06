@@ -1,5 +1,5 @@
 import { Box, Grid, TextField } from '@mui/material';
-import { FC, useState } from 'react';
+import { FC, SyntheticEvent, useState } from 'react';
 import { updateUserPassword } from '../../store/thunks/auth';
 import { useAppDispatch } from '../../utils/hooks';
 import AppLoadingButton from '../loading-button';
@@ -11,7 +11,7 @@ const ChangePasswordComponent: FC = (): JSX.Element => {
 	const classes = useStyles();
 	const dispatch = useAppDispatch();
 
-	const handleSubmit = (e: any) => {
+	const handleSubmit = (e: SyntheticEvent) => {
 		e.preventDefault();
 		const data = {
 			oldPassword,

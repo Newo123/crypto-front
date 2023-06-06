@@ -2,7 +2,7 @@ import { Grid, useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
-import { SyntheticEvent, useEffect, useState } from 'react';
+import { FC, SyntheticEvent, useEffect, useState } from 'react';
 import ChangePasswordComponent from '../../components/change-password';
 import DeleteUserComponent from '../../components/delete-user';
 import PersonalInfoComponent from '../../components/personal-info';
@@ -13,7 +13,7 @@ import { tabProps } from '../../utils/helpers';
 import { useAppDispatch } from '../../utils/hooks';
 import { useStyles } from './styles';
 
-const SettingsPage = () => {
+const SettingsPage: FC = (): JSX.Element => {
 	const [value, setValue] = useState(0);
 	const theme = useTheme();
 	const colors = tokens(theme.palette.mode);

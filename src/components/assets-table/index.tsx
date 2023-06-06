@@ -5,11 +5,15 @@ import {
 	TableCell,
 	TableContainer,
 	TableHead,
-	TableRow
+	TableRow,
 } from '@mui/material';
+import { FC } from 'react';
+import { ISingleAsset, ITablePriceData } from '../../common/types/assets';
 import { useStyles } from './styles';
 
-const AssetsTableComponent = ({ assets }: any): JSX.Element => {
+const AssetsTableComponent: FC<ITablePriceData> = ({
+	assets,
+}: ITablePriceData): JSX.Element => {
 	const classes = useStyles();
 	return (
 		<TableContainer className={classes.topPriceRoot} component={Paper}>
@@ -23,13 +27,13 @@ const AssetsTableComponent = ({ assets }: any): JSX.Element => {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{assets.map((element: any) => (
+					{assets.map((element: ISingleAsset) => (
 						<TableRow
 							key={element.name}
 							sx={{
 								'&:last-child td, &:last-child th': {
-									border: 0
-								}
+									border: 0,
+								},
 							}}
 						>
 							<TableCell component='th' scope='row'>
