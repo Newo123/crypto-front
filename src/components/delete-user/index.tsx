@@ -21,7 +21,7 @@ const DeleteUserComponent: FC = (): JSX.Element => {
 	const handleDelete = () => {
 		dispatch(deleteUser());
 		sessionStorage.removeItem('token');
-		sessionStorage.removeItem('user');
+		sessionStorage.removeItem('name');
 		navigate('/login');
 	};
 

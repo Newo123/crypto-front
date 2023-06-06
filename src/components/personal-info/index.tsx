@@ -1,15 +1,15 @@
 import { Box, Grid, TextField } from '@mui/material';
-import { FC, useEffect, useState } from 'react';
-import { updateUserInfo } from '../../store/thunks/auth';
+import { FC, SyntheticEvent, useEffect, useState } from 'react';
+import { getPublicUser, updateUserInfo } from '../../store/thunks/auth';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import AppLoadingButton from '../loading-button';
 import { useStyles } from './styles';
 
 const PersonalInfoComponent: FC = (): JSX.Element => {
 	const dispatch = useAppDispatch();
-	const [name, setName] = useState('');
-	const [userName, setUserName] = useState('');
-	const [email, setEmail] = useState('');
+	const [name, setName] = useState<string>('');
+	const [userName, setUserName] = useState<string>('');
+	const [email, setEmail] = useState<string>('');
 	const { user } = useAppSelector(state => state.auth.user);
 	const classes = useStyles();
 
@@ -21,14 +21,15 @@ const PersonalInfoComponent: FC = (): JSX.Element => {
 		}
 	}, [user]);
 
-	const handleSubmit = (e: any) => {
+	const handleSubmit = (e: SyntheticEvent) => {
 		e.preventDefault();
 		const data = {
-			name: name,
-			userName: userName,
-			email: email,
+			name,
+			userName,
+			email,
 		};
 		dispatch(updateUserInfo(data));
+		dispatch(getPublicUser());
 	};
 
 	return (

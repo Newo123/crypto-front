@@ -1,4 +1,4 @@
-export interface TabPanelProps {
+export interface ITabPanel {
 	children?: React.ReactNode;
 	index: number;
 	value: number;

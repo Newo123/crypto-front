@@ -1,12 +1,13 @@
 import { Box } from '@mui/material';
-import { TabPanelProps } from '../../common/types/tabs';
+import { FC } from 'react';
+import { ITabPanel } from '../../common/types/tabs';
 
-const TabPanel = ({
+const TabPanel: FC<ITabPanel> = ({
 	children,
 	value,
 	index,
 	...other
-}: TabPanelProps): JSX.Element => {
+}: ITabPanel): JSX.Element => {
 	return (
 		<div
 			role='tabpanel'
